@@ -1,0 +1,12 @@
+
+#base {
+    background-color: var(--body-color); /* For example, a red background */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%; /* Ensures the background covers the entire viewport */
+    min-height: 100vh;
+  }
+#rot {
+  background-color: var(--body-color);
+}
