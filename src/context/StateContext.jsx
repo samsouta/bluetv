@@ -38,7 +38,7 @@ export const StateContextProvider = ({ children }) => {
             setLoading(true); // Set loading to true before fetching
             try {
                 // Include `currentPage` in the URL to fetch data for that specific page
-                const response = await fetch(`http://chaw.giize.com/api/v1/movies?page=${currentPage}`);
+                const response = await fetch(`https://bluetv.x10.mx/api/v1/movies?page=${currentPage}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

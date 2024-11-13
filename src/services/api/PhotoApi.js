@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const photoApi = createApi({
   reducerPath: 'photoApi', // a unique name for the API slice
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://chaw.giize.com/api/v1/', // Base URL for API
+    baseUrl: 'https://bluetv.x10.mx/api/v1/', // Base URL for API
   }),
   endpoints: (builder) => ({
     getPhotos: builder.query({
