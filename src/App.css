@@ -1,6 +1,4 @@
-@import "./style/color.css";
-@import "./style/body.css";
-@import "./style/Home/Hdata3.css";
-@import "./style/font.css";
-@import "./style/error/error.css";
+@import './assets/style/body.css';
+@import './assets/style/color.css';
+@import './assets/style/font.css'
 

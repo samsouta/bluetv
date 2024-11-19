@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import './App.css'
-import Patch from './routes/Patch'
-
+import './App.css';
+import Index from './routes';
 function App() {
 
   return (
     <>
-      <Patch/>
+      <Index/>
     </>
   )
 }

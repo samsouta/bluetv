@@ -3,13 +3,12 @@ import { createSlice } from '@reduxjs/toolkit'
 export const HomeSlice = createSlice({
     name: 'home',
     initialState: {
-        value: 0,
-        data: JSON.parse(localStorage.getItem('homeDetail')) || {} 
+        data: JSON.parse(localStorage.getItem('id')) || {} 
       },
       reducers : {
         homeDetail: (state,{payload}) => {
             state.data = payload
-            localStorage.setItem('homeDetail', JSON.stringify(payload)); // Save to local storage
+            localStorage.setItem('id', JSON.stringify(payload)); // Save to local storage
           },
       }
 })
