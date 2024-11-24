@@ -1,0 +1,14 @@
+
+.animate-scan {
+  animation: scan 2s linear infinite;
+}
+
+
+
+/* Optimize video performance */
+video {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}

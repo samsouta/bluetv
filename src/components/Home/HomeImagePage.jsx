@@ -57,10 +57,10 @@ const HomeImagePage = () => {
   return (
     <div>
        <div>
-            <div className="max-w-[900px] mt-16 gap-2 grid grid-cols-12 grid-rows-2 px-8">
+            <div className=" mt-16 px-2 flex-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 transition-all duration-300 ease-in-out">
                 {/* Map over the 'photos' data that is fetched */}
                 {photos?.map((item) => (
-                    <Card key={item?.id} isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+                    <Card key={item?.id} isFooterBlurred className="bg-transparent w-full h-[250px] sm:h-[300px] md:h-[300px] lg:h-[300px] overflow-hidden transition-all duration-300 ease-in-out">
                         <CardHeader className="absolute z-10 top-1 flex-col items-start">
                             <p className="text-tiny text-[#fbb0da] uppercase font-bold">New</p>
                         </CardHeader>

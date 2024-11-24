@@ -1,28 +1,33 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
-import { NextUIProvider } from "@nextui-org/react";
-import '@mantine/core/styles.css';
-import { MantineProvider } from '@mantine/core';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import { NextUIProvider } from '@nextui-org/react';
 import { Provider } from 'react-redux';
 import store from './services/app/store.js';
-
-import './index.css'
+import { createTheme, MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+import './index.css';
 import './App.css';
 import { StateContextProvider } from './context/StateContext.jsx';
+
+// Define the theme object
+const theme = createTheme({
+   /** Put your mantine theme override here */
+ });
+
 createRoot(document.getElementById('root')).render(
-   <BrowserRouter>
-      <Provider store={store} >
-         <StateContextProvider>
+  <StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <StateContextProvider>
+          <MantineProvider theme={theme}>
             <NextUIProvider>
-               <MantineProvider>
-                  <StrictMode>
-                     <App />
-                  </StrictMode>
-               </MantineProvider>
+              <App />
             </NextUIProvider>
-         </StateContextProvider>
+          </MantineProvider>
+        </StateContextProvider>
       </Provider>
-   </BrowserRouter>
-)
+    </BrowserRouter>
+  </StrictMode>
+);

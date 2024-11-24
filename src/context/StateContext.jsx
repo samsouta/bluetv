@@ -9,9 +9,7 @@ export const StateContextProvider = ({ children }) => {
     // Use the custom hook to get movie data and state
     const { movies, filteredMovies,setFilteredMovies, currentPage, setCurrentPage, totalItems, loading, error } = useFetchMovies();
     const {contentRef} = HandleScroll();
-    const {videoPage,setVideoPage,photoPage,setPhotoPage,genrePage,setGenrePage} =UseState()
-
-
+    const {videoPage,setVideoPage,photoPage,setPhotoPage,genrePage,setGenrePage,sideBarTap, setSideBarTap} =UseState()
 
     const combinedData = {
         movies,
@@ -30,7 +28,9 @@ export const StateContextProvider = ({ children }) => {
         photoPage,
         setPhotoPage,
         genrePage,
-        setGenrePage
+        setGenrePage,
+        sideBarTap, 
+        setSideBarTap
     };
 
 

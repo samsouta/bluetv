@@ -1,10 +1,10 @@
 // src/hooks/useFetchMovies.js
 import { useEffect, useState } from 'react';
 
-export const useFetchMovies = (initialPage = 1) => {
+export const useFetchMovies = () => {
     const [movies, setMovies] = useState([]);
     const [filteredMovies, setFilteredMovies] = useState([]);
-    const [currentPage, setCurrentPage] = useState(initialPage);
+    const [currentPage, setCurrentPage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ export const useFetchMovies = (initialPage = 1) => {
                 const data = await response.json();
                 setMovies(data); // Store movie data
                 setFilteredMovies(data); // Initially show all movies
-                setCurrentPage(data.meta.current_page);
+                setCurrentPage(data.meta.current_page || 1); 
                 setTotalItems(data.meta.last_page); // Set total number of pages
             } catch (error) {
                 setError(error); // Handle error

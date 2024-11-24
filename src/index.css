@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@keyframes scan {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(100vh);
+    }
+  }
+
+  @layer utilities {
+    .bg-clip-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }

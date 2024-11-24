@@ -1,87 +1,151 @@
-import { Button, Input } from '@nextui-org/react'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaFacebook } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
+import React, { useState } from 'react'
+import { Github, Linkedin, Mail, Globe, Heart, Sparkles, Subscript } from 'lucide-react';
+import { SiViber } from "react-icons/si";
+import Swal from 'sweetalert2';
 
+const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
-export default function Footer() {
-  const nav = useNavigate()
-  const handleAbout = () => {
-    nav('/about')
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth', // Smooth scroll effect
-    });
-  }
-  // scroll to content-me 
-  const scrollToContent = () => {
-    nav('/about#contact-me');
-    console.log('work');
+  const currentYear = new Date().getFullYear();
+
+  // Function to validate email
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return regex.test(email);
   };
-  return (
-    <footer className="bg-[#93a4ab] mt-24 text-gray-800">
-      <div className="max-w-6xl mx-auto px-4 py-10 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="mb-8 md:mb-0">
-            <h3 className="text-xl kablammo font-semibold mb-4">BlueTVV</h3>
-            <p className="text-gray-700 p-text">သိုင်းသမား ညီကိုတို့min ga lar par အလုပ်ကိစ္စ ဆက်သွယ်ချင်ရင် အောက် က link ကနေတစ်ဆင့်ဆက်သွယ်နိုင်ပါတယ်</p>
-          </div>
-          <div className="mb-5 md:mb-0">
-            <div className="w-full sm:w-1/3 mb-6">
-              <h3 className="text-xl head-font text-gray-700 mb-2">Quick Links</h3>
-              <ul>
-                <Link to={`/home`} ><li><a className="text-gray-700 sub-font hover:text-[#2b4242]">Home</a></li></Link>
-                <li><a onClick={handleAbout} className="text-gray-700 sub-font hover:text-[#2b4242]">About</a></li>
-                <div onClick={scrollToContent} ><li><a className="text-gray-700sub-font hover:text-[#2b4242]">Content</a></li></div>
 
+  const handleSubscript = () => {
+
+    if (!email) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter your email!",
+      });
+    } else if (!validateEmail(email)) {
+      Swal.fire({
+        icon: "error",
+        text: "Please enter a valid email address!",
+      });
+    } else {
+      setError('');
+      setEmail('')
+      Swal.fire("Thank you for Subscribe!");
+    }
+
+  }
+  return (
+    <>
+      <footer className="bg-gradient-to-r from-[#2b4242] to-[#434d6d] text-[#c3c6c3]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Top Section with Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+            {/* Company Info */}
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <Sparkles className="w-6 h-6 text-[#007c8e]" />
+                <h3 className="text-xl font-bold bg-gradient-to-r from-[#007c8e] to-[#675680] inline-block text-transparent bg-clip-text">
+                  BlueTV
+                </h3>
+              </div>
+              <p className="text-sm leading-relaxed">
+                Discover premium adult content with a focus on privacy and quality. For terms, privacy policies, and support, check the links below. Thank you for choosing us
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            {/* <div>
+              <h4 className="font-semibold text-[#ffffff] mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                {['About', 'Services', 'Portfolio', 'Blog'].map((item) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="text-sm hover:text-[#007c8e] transition-colors duration-300 flex items-center space-x-1 group"
+                    >
+                      <Globe className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                      <span>{item}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div> */}
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="font-semibold text-[#ffffff] mb-4">Contact</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="mailto:contact@future.com"
+                    className="text-sm hover:text-[#007c8e] transition-colors duration-300 flex items-center space-x-2 group"
+                  >
+                    <Mail className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-300" />
+                    <span>contact@future.com</span>
+                  </a>
+                </li>
+                <li className="text-sm">73, Jalan Raja Chulan, Bukit Bintang</li>
+                <li className="text-sm">KL , Malaysia</li>
               </ul>
             </div>
+
+            {/* Newsletter */}
+            <div>
+              <h4 className="font-semibold text-[#ffffff] mb-4">Stay Connected</h4>
+              <div className="relative">
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2 bg-[#6b8784]/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#007c8e] transition-all duration-300 placeholder-[#93a4ab]"
+                />
+                <button onClick={handleSubscript} className="mt-2 w-full bg-gradient-to-r from-[#007c8e] to-[#675680] text-white py-2 px-4 rounded-lg hover:opacity-90 transition-opacity duration-300 flex items-center justify-center space-x-2">
+                  <span>Subscribe</span>
+                  <Sparkles className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="mb-8 md:mb-0">
-            <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-            <p className="text-gray-700">SS/30, Kelana Jaya, 47302,Petaling Jaya, Selangor, Malaysia</p>
-            <p className="text-gray-700">Email: darkken415@gmail.com</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-700 mb-2">Stay updated with our latest news and offers.</p>
-            <form className="flex flex-col space-y-2">
-              <Input type="email" placeholder="Your email" className="bg-white text-gray-800 border-gray-300" />
-              <Button type="submit" className="bg-gray-800 hover:bg-gray-900 text-white">Subscribe</Button>
-            </form>
-          </div>
-        </div>
-        <div className="mt-10 border-t border-gray-600 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-700 text-sm mb-4 md:mb-0">&copy; 2024 BlueTVV. All rights reserved.</p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-                <FaFacebook size={20} />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-                <FaTwitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-                <FaInstagram size={20} />
-                <span className="sr-only">Instagram</span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-                <FaLinkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-                <IoMdMail size={20} />
-                <span className="sr-only">Email</span>
-              </a>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-[#93a4ab]/20 to-transparent" />
+
+          {/* Bottom Section */}
+          <div className="py-6">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              {/* Copyright */}
+              <div className="flex items-center space-x-2">
+                <Heart className="w-4 h-4 text-[#007c8e]" />
+                <p className="text-sm">
+                  © {currentYear} BlueTV. All rights reserved.
+                </p>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex space-x-4">
+                {[
+                  { icon: SiViber, href: 'viber://contact?number=+601117901410' },
+                  { icon: Github, href: 'https://github.com/samsouta' },
+                  { icon: Linkedin, href: 'https://www.linkedin.com/in/sam-souta-a28384321/' },
+                ].map(({ icon: Icon, href }, index) => (
+                  <a
+                    key={index}
+                    href={href}
+                    className="transform hover:scale-110 hover:text-[#007c8e] transition-all duration-300"
+                    aria-label={`Social link ${index + 1}`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
+
+export default Footer
