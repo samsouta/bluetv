@@ -10,6 +10,7 @@ import { MostViews } from '../api/MostViews'
 import { SidebarSlice } from '../Feature/SidebarSlice'
 import { TopRate } from '../api/TopRate'
 import { Popular } from '../api/Popular'
+import { PostComment } from '../api/PostComment'
 export default configureStore({
   reducer: {
     home: HomeSlice.reducer, 
@@ -25,12 +26,13 @@ export default configureStore({
     [MostViews.reducerPath]: MostViews.reducer,
     [TopRate.reducerPath]: TopRate.reducer,
     [Popular.reducerPath]: Popular.reducer,
+    [PostComment.reducerPath]: PostComment.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(Voting.middleware , 
       ViewCount.middleware, photoApi.middleware ,
        DetailApi.middleware, GetAllGenre.middleware,
       AllVideos.middleware , MostViews.middleware,
-      TopRate.middleware,Popular.middleware,
+      TopRate.middleware,Popular.middleware,PostComment.middleware
       ),  
 })

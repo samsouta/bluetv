@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Swal from 'sweetalert2';
 
 const Contant = () => {
 
@@ -23,7 +24,7 @@ const Contant = () => {
     console.log('Form submitted:', formData);
     // Reset form after submission
     setFormData({ name: '', email: '', message: '' });
-    alert('Thank you for your message! We will get back to you soon.');
+    Swal.fire("Thank you for your message! We will get back to you soon.");
   };
 
   return (
@@ -135,18 +136,6 @@ const Contant = () => {
             </form>
           </motion.section>
         </main>
-
-        <footer className="bg-gray-800 py-8 mt-16">
-          <div className="container mx-auto px-4 text-center">
-            <p>&copy; 2023 Our Creative Studio. All rights reserved.</p>
-            <div className="mt-4 space-x-4">
-              <a href="#" className="text-blue-400 hover:text-blue-300">Facebook</a>
-              <a href="#" className="text-blue-400 hover:text-blue-300">Twitter</a>
-              <a href="#" className="text-blue-400 hover:text-blue-300">Instagram</a>
-              <a href="#" className="text-blue-400 hover:text-blue-300">LinkedIn</a>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   )

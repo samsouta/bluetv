@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { SideMenuItems } from '../../Utils/SideMenuItems';
@@ -10,7 +10,6 @@ import TvLoader from '../Ui/TvLoader';
 import { useGetMostViewsQuery } from '../../services/api/MostViews';
 import { useGetTopRateQuery } from '../../services/api/TopRate';
 import { useGetPopularQuery } from '../../services/api/Popular';
-import LazyLoad from 'react-lazyload';
 
 const SideBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,17 +33,17 @@ const SideBar = () => {
         closed: { opacity: 0, x: 20 },
     };
 
-    const handleSidebarAction = (url, text, data, isLoading) => {
+    const handleSidebarAction = useCallback((url, text, data, isLoading) => {
         if (isLoading) {
-            return <LazyLoad offset={100} style={{ height: '100%', width: '100%' }} ><TvLoader/></LazyLoad>;
+            return <TvLoader/>
         }
         setIsOpen(false);
         dispatch(getSidebarItem(text));
         setFilteredMovies(data);
         navigate(url);
-    };
+    });
 
-    const handleSidebar = (id, text) => {
+    const handleSidebar = useCallback((id, text) => {
         const actions = {
             1: () => {
                 localStorage.removeItem('sidetext');
@@ -61,7 +60,7 @@ const SideBar = () => {
         };
 
         actions[id]?.();
-    };
+    });
 
     return (
         <>

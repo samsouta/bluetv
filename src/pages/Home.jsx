@@ -20,6 +20,7 @@ const Home = () => {
       <HomeSlider/>
       <HomeCatagory />
       <HomeVideoList />
+
     </>
   );
 }

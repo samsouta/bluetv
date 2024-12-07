@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion';
 
 
@@ -42,4 +42,4 @@ const GlitchText = ({ text, className = '' }) => {
   )
 }
 
-export default GlitchText
+export default memo(GlitchText);

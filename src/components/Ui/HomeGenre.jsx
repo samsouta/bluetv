@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { memo, useContext, useEffect } from 'react';
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { stateContext } from '../../context/StateContext';
 import { useGetAllVideosQuery } from '../../services/api/AllVideos';
 
-const HomeGenre = ({ currentData, HomeGernActive, setHomeGernActive ,setHomeTapActive}) => {
+const HomeGenre = ({ currentData, HomeGernActive, setHomeGernActive, setHomeTapActive }) => {
     const {
         setFilteredMovies,
         setGenrePage,
@@ -13,7 +13,7 @@ const HomeGenre = ({ currentData, HomeGernActive, setHomeGernActive ,setHomeTapA
     } = useContext(stateContext);
     const { data } = useGetAllVideosQuery();
 
-    
+
     useEffect(() => {
         localStorage.setItem('HomeGernActive', HomeGernActive);
         setVideoPage(true);
@@ -29,11 +29,14 @@ const HomeGenre = ({ currentData, HomeGernActive, setHomeGernActive ,setHomeTapA
             const filtered = data?.filter((movie) => movie.genre === HomeGernActive);
             setFilteredMovies(filtered);
         }
-    }, [HomeGernActive, data,setFilteredMovies, setPhotoPage, setVideoPage]);
+    }, [HomeGernActive, data, setFilteredMovies, setPhotoPage, setVideoPage]);
 
     return (
         <Breadcrumbs
+            maxItems={20}
+
             size="lg"
+            className=' w-full flex-wrap'
             onAction={(key) => setHomeGernActive(key)}
             classNames={{
                 list: "gap-2",
@@ -61,4 +64,4 @@ const HomeGenre = ({ currentData, HomeGernActive, setHomeGernActive ,setHomeTapA
     );
 };
 
-export default HomeGenre;
+export default memo(HomeGenre);

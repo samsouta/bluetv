@@ -6,12 +6,12 @@ export const useFetchMovies = () => {
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);  // Initially loading is true
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchMovies = async () => {
-            setLoading(true);
+            setLoading(true);  // Start loading
             try {
                 const response = await fetch(`https://bluetv.x10.mx/api/v1/movies?page=${currentPage}`);
                 if (!response.ok) {
@@ -25,11 +25,11 @@ export const useFetchMovies = () => {
             } catch (error) {
                 setError(error); // Handle error
             } finally {
-                setLoading(false);
+                setLoading(false);  // Set loading to false once fetching is done
             }
         };
         fetchMovies();
     }, [currentPage]);
 
-    return { movies, filteredMovies,setFilteredMovies, currentPage, setCurrentPage, totalItems, loading, error };
+    return { movies, filteredMovies, setFilteredMovies, currentPage, setCurrentPage, totalItems, loading, error };
 };

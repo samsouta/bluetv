@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import { Tabs, Tab, Card, CardBody, Chip } from "@nextui-org/react";
 import { Clapperboard, ImageDown } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -44,7 +44,7 @@ const HomeTap = ({ homeMenu, HomeTapActive, setHomeTapActive }) => {
 
     return (
         <div className="flex w-full flex-col">
-            <Tabs color='' size="md" aria-label="Options"
+            <Tabs size="md" aria-label="Options"
                 selectedKey={HomeTapActive}
                 onSelectionChange={setHomeTapActive}
 
@@ -95,4 +95,4 @@ const HomeTap = ({ homeMenu, HomeTapActive, setHomeTapActive }) => {
     );
 };
 
-export default HomeTap;
+export default memo(HomeTap);

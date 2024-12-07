@@ -46,6 +46,7 @@ const HNavbar = () => {
 
     const goHome = () => {
         navigate(`/home`);
+        window.location.reload()
     };
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { FaCopy } from 'react-icons/fa';
 import { IoLogoFacebook, IoLogoTwitter, IoLogoWhatsapp } from 'react-icons/io';
 
@@ -75,4 +75,4 @@ const ShareModel = ({setIsModalOpen }) => {
     );
 }
 
-export default ShareModel;
+export default memo(ShareModel);

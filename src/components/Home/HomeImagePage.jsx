@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import TvLoader from '../Ui/TvLoader';
 import { useGetPhotosQuery } from '../../services/api/PhotoApi';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ const HomeImagePage = () => {
     if (isLoading) return <TvLoader />; // Display loading state
     if (error) return <div>Error: {error.message}</div>; // Handle errors
 
-    const handleDownload = (url, name) => {
+    const handleDownload = useCallback((url, name) => {
         Swal.fire({
             title: 'Are you sure?',
             text: `Do you want to download this image: ${name}?`,
@@ -53,7 +53,7 @@ const HomeImagePage = () => {
             }
         `;
         document.head.appendChild(style);
-    };
+    });
   return (
     <div>
        <div>
